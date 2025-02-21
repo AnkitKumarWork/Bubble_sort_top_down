@@ -1,0 +1,54 @@
+    
+        //load operation
+        //load a
+       ld_n_1 = 1;
+       sel_m4 = 1;
+       sel_m8 = 0;
+        mem_en = 1;       // Enable memory
+        RW_MEM = 0;      // READ MODE
+            ld_a = 1;
+        //        ld_n_1 = 1;
+        
+        //incr i 
+        #10;
+        sel_m5 = 1;
+        ALU_sel = 2'b10;
+        #10;
+        sel_m5 = 0;
+        ld_i = 1;
+        #10;
+        //load b
+       sel_m4 = 2'b00; //select i 
+       sel_m8 = 0;
+        mem_en = 1;       // Enable memory
+        RW_MEM = 0;      // READ MODE
+            ld_a = 0;
+            ld_b = 1;
+            #10;
+            ld_i = 0;
+
+        
+        //to read datas from memory while writing into memory
+        #20;
+
+/*    for ( i = 0; i < 8; i = i + 1) begin
+        //data_in = $random % 65536; // Generate random 16-bit data
+        addr_ptr = i;             // Set address pointer
+        #10;                      // Wait for one clock cycle
+    end
+    // Disable memory
+   //comparison a & b 
+   sel_m2 = 2'b01;
+   sel_m1 = 2'b10;
+   ALU_sel = 2'b11;*/
+    #20;
+    // swap data mem(i) = B
+        RW_MEM = 0; // write mode
+        sel_m3 = 0; // select b 
+        sel_m4 = 2'b00; // select i
+        sel_m7 = 0; // select b
+        sel_m8 = 0; // select i as add_ptr
+     //
+    // Finish simulation
+    #100;
+    $stop;
